@@ -1,0 +1,15 @@
+.login-body {
+  background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 40px;
+  width: 400px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}

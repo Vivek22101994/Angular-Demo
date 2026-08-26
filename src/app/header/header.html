@@ -1,0 +1,22 @@
+<header class="header">
+  <div class="brand">Admin Panel</div>
+
+  <nav class="nav">
+    <button class="link" [class.link-active]="isActive('/dashboard')" (click)="goTo('/dashboard')">
+      Dashboard
+    </button>
+    <button class="link" [class.link-active]="isActive('/userList')" (click)="goTo('/userList')">
+      User List
+    </button>
+    <button class="link" [class.link-active]="isActive('/inputRef')" (click)="goTo('/inputRef')">
+      Context Demo
+    </button>
+    <button class="link" [class.link-active]="isActive('/adduser')" (click)="goTo('/adduser')">
+      Add User
+    </button>
+  </nav>
+
+  <button class="logout-button" (click)="logout()">
+    Logout
+  </button>
+</header>

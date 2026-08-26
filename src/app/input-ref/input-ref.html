@@ -1,0 +1,23 @@
+<app-header></app-header>
+<div style="text-align: center;">
+    <app-name-handler [tname] ='username'></app-name-handler>
+</div>
+<br/>
+<div class="row">
+   
+      <div class="col-md-4">
+        <!-- empty column -->
+      </div>
+      <div class="col-md-3">
+        <label class="form-label">Username</label>
+        <input
+          class="form-control"
+          type="text"
+          name="username"
+          [(ngModel)]="username"
+        />
+      </div>
+    </div>
+
+ 
+<app-footer></app-footer>

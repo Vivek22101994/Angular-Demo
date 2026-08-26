@@ -1,0 +1,41 @@
+<app-header></app-header>
+
+@if (loading()) {
+  <p class="status">Loading users...</p>
+} @else if (error()) {
+  <p class="status error">{{ error() }}</p>
+} @else {
+  <div class="table-wrap">
+    <table class="user-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Company</th>  
+          <th>City</th> 
+          <th>Delete</th>        
+        </tr>
+      </thead>
+      <tbody>
+        @for (user of users(); track user.id) {
+          <tr>
+            <td>{{ user.id }}</td>
+            <td class="name-cell">{{ user.name }}</td>
+            <td>{{ user.name }}</td>
+            <td><a href="mailto:{{ user.email }}">{{ user.email }}</a></td>
+            <td>{{ user.company.name }}</td>
+            <td>{{ user.address.city }}</td>
+            <td><a href="#" (click)="deleteData(user.id, $event)">Delete</a></td>
+          </tr>
+        } @empty {
+          <tr>
+            <td colspan="7" class="empty-row">No users found.</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+}
+<app-footer></app-footer>

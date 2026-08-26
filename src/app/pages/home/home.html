@@ -1,0 +1,41 @@
+<div class="login-body">
+  <div class="login-card">
+  <!-- <app-name-handler [tname]="username"></app-name-handler> -->
+    <div class="text-center mb-3">
+      <img src="https://channel.magarental.com/assets/images/logo-mega.svg" alt="Logo" height="60" />
+    </div>
+
+    <h3 class="text-center mb-4">Login</h3>
+
+    <!-- Reading signals using parentheses () -->
+    <div class="alert alert-danger" *ngIf="error()">{{ error() }}</div>
+
+    <form (ngSubmit)="handleSubmit()" #loginForm="ngForm">
+      <div class="mb-3">
+        <label class="form-label">Username</label>
+        <input
+          class="form-control"
+          type="text"
+          name="username"
+          [(ngModel)]="username"
+          [disabled]="loading()"
+        />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Password</label>
+        <input
+          class="form-control"
+          type="password"
+          name="password"
+          [(ngModel)]="password"
+          [disabled]="loading()"
+        />
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100" [disabled]="loading()">
+        {{ loading() ? 'Logging in...' : 'Login' }}
+      </button>
+    </form>
+  </div>
+</div>
