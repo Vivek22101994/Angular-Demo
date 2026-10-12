@@ -1,0 +1,33 @@
+<app-header></app-header>
+<p style="text-align:center;font-size: medium;">Demo Text List</p>
+@if(isLoading()){
+    <h1>Loading Post.....</h1>
+}
+@else if(isError()){
+    <h2>Error While Load Data</h2>
+}
+@else{
+
+@if(isDeleted()){
+   <div class="alert alert-danger d-flex justify-content-center align-items-center gap-3">
+         <span>Post Deleted successfully.</span>
+         <button class="btn btn-sm btn-outline-danger" (click)="handleRevart()">Undo</button>
+</div>
+}
+<table>
+    <tr>
+        <th>UserId</th>
+        <th>Title</th>
+        <th>Body</th>
+    </tr>
+    @for(Lisrdata of listData(); track Lisrdata.id)
+    {
+        <tr style="cursor:pointer;" (click)="handleClick(Lisrdata.id)">
+            <td>{{Lisrdata.id}}</td>
+            <td>{{Lisrdata.title}}</td>
+            <td>{{Lisrdata.body}}</td>
+        </tr>
+    }
+  </table>
+}
+<app-footer></app-footer>

@@ -1,0 +1,20 @@
+<app-header></app-header>
+<div class="counter-display">
+    {{ min() < 10 ? '0' + min() : min() }}
+    :
+    {{ counter().toString().padStart(2,'0')}}    
+</div>
+<div>
+    <p>{{userData().id}}</p>
+    <p>{{userData().name}}</p>
+    <p>{{userData().city}}</p>
+ 
+     <select id="ddlCity" (change)="handleClick($event)">
+          <option value="Surat">Surat</option>
+          <option value="Vadodara">Vadodara</option>
+          <option value="Ahemdabad">Ahemdabad</option>
+     </select>
+     <p>{{name()}}</p>
+     <input id="txtinpu" (input)="this.name.set($event.target.value)" />
+</div>
+<app-footer></app-footer>

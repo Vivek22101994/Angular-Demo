@@ -1,0 +1,19 @@
+table tr td
+{
+  border:2px solid black;
+}
+th
+{
+    background-color: #1f2937;
+    color: white;
+    text-align: center;
+    font-size: 14px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+h1{
+    text-align: center;
+}
+h2{
+    text-align: center;
+    color: red;
+}

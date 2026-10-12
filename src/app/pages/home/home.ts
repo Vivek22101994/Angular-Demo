@@ -41,7 +41,8 @@ export class Home {
 
     this.http
       .post(
-        `${this.apiUrl}/api/Auth/login`,
+        `
+        /api/Auth/login`,
         { username: trimmedUsername, password: trimmedPassword },
         { withCredentials: true, observe: 'response' }
       )

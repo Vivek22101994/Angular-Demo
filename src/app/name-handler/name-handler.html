@@ -1,7 +1,13 @@
-<br/>
-<div class="text-center mb-3">
-      <img src="https://channel.magarental.com/assets/images/logo-mega.svg" alt="Logo" height="60" />
-</div>
-<div>
-    Welcome {{tname}}
-</div>
+<!-- name-handler.component.html -->
+<td class="text-muted">{{ index }}</td>
+<td>
+  <div class="d-flex align-items-center gap-2">
+    <span class="avatar">{{ tname.charAt(0).toUpperCase() }}</span>
+    <span class="fw-semibold">{{ tname }}</span>
+  </div>
+</td>
+<td class="text-end">
+  <button class="btn btn-sm btn-outline-primary" (click)="select(tname)">
+    Select
+  </button>
+</td>

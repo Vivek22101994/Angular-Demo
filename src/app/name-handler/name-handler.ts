@@ -1,4 +1,4 @@
-import { Component,Input } from '@angular/core';
+import { Component,EventEmitter,Input, Output, output, signal } from '@angular/core';
 
 @Component({
   imports: [],
@@ -8,5 +8,11 @@ import { Component,Input } from '@angular/core';
 })
 export class NameHandler {
   @Input() tname: string = '';
-
+  @Input() index!: number;
+  @Output() selectedUser = new EventEmitter();
+  
+  select(id:string){
+    this.selectedUser.emit(id);
+  }
+  
 }

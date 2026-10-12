@@ -2,6 +2,7 @@ import { Component, OnInit, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HeaderComponent } from '../header/header';
 import { Footer } from '../footer/footer';
+import { RouterLink } from '@angular/router';
 
 interface User {
   id: number;
@@ -14,7 +15,6 @@ interface User {
     city:string
   }
 }
-
 @Component({
   imports:[HeaderComponent,Footer],
   standalone: true,
@@ -45,7 +45,7 @@ export class Dashboard implements OnInit {
   deleteData(id: number, event: Event): void {
      event.preventDefault();
      const currentUsers = [...this.users()];        // copy the array first
-     const index = currentUsers.findIndex(c=>c.id === id);
+     const index = currentUsers.findIndex(c=> c.id === id);
      if (index !== -1) {
          currentUsers.splice(index, 1);                // mutate the copy, not the original
          this.users.set(currentUsers);                 // set the new array

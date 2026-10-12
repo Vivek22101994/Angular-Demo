@@ -21,7 +21,6 @@ export class Adduser {
   loading = signal(false);
   error = signal('');
 
-  private apiUrl = 'http://localhost:5012';
 
   constructor(
     private http: HttpClient,
@@ -56,7 +55,7 @@ export class Adduser {
 
   this.http
       .post(
-        `${this.apiUrl}/api/Auth/saveUser`,
+        `/api/Auth/saveUser`,
          payload,
         { withCredentials: true, observe: 'response' }
       )
@@ -67,7 +66,8 @@ export class Adduser {
             this.error.set('Success');    
             this.email = '';
             this.password = '';
-            this.fullName = '';      
+            this.fullName = '';
+                  
           } else {
             this.error.set('Invalid Access');
           }

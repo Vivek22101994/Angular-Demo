@@ -1,1 +1,44 @@
-/* You can add global styles to this file, and also import other style files */
+.modern-table {
+  border-collapse: separate;
+  border-spacing: 0;
+}
+
+.modern-table thead th {
+  background: #f8f9fc;
+  color: #6c757d;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 600;
+  border-bottom: 1px solid #e9ecef;
+  padding: 14px 20px;
+}
+
+.modern-table tbody td {
+  padding: 14px 20px;
+  border-bottom: 1px solid #f1f3f5;
+}
+
+.modern-table tbody tr {
+  transition: background 0.15s ease;
+}
+
+.modern-table tbody tr:hover {
+  background: #f5f8ff;
+}
+
+.modern-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #4f8cff, #7a5cff);
+  color: #fff;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}/* You can add global styles to this file, and also import other style files */

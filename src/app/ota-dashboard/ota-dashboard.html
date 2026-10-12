@@ -1,0 +1,89 @@
+<app-header></app-header>
+<div class="dashboard">
+
+  <header class="dashboard-header">
+    <h1>OTA Booking Dashboard</h1>
+    <p class="subtitle">Booking.com &middot; Airbnb &middot; Expedia &middot; Agoda &mdash; last 6 months</p>
+  </header>
+
+  <!-- Stat cards -->
+  <section class="stat-grid">
+    <div class="stat-card">
+      <span class="stat-label">Total Bookings</span>
+      <span class="stat-value">{{ totalBookings() }}</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">Total Revenue</span>
+      <span class="stat-value">₹{{ totalRevenue() | number }}</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">Avg. Booking Value</span>
+      <span class="stat-value">₹{{ avgBookingValue() | number }}</span>
+    </div>
+    <div class="stat-card highlight">
+      <span class="stat-label">Top Channel</span>
+      <span class="stat-value">{{ topSource().name }}</span>
+    </div>
+  </section>
+
+  <section class="chart-grid">
+
+    <!-- Bar chart: bookings per OTA source -->
+    <div class="chart-card">
+      <h2>Bookings by Channel</h2>
+      <div class="bar-chart">
+        @for (s of sources(); track s.name) {
+          <div class="bar-column">
+            <div class="bar-value">{{ s.bookings }}</div>
+            <div class="bar" [style.height.%]="barHeight(s.bookings)" [style.background]="s.color"></div>
+            <div class="bar-label">{{ s.name }}</div>
+          </div>
+        }
+      </div>
+    </div>
+
+    <!-- Line chart: monthly trend -->
+    <div class="chart-card">
+      <h2>Booking Trend (6 mo)</h2>
+      <svg [attr.viewBox]="svgViewBox" class="trend-svg">
+        <path [attr.d]="areaPath()" class="trend-area"></path>
+        <path [attr.d]="linePath()" class="trend-line"></path>
+        @for (p of linePoints(); track p.month) {
+          <circle [attr.cx]="p.x" [attr.cy]="p.y" r="3.5" class="trend-dot"></circle>
+          <text [attr.x]="p.x" [attr.y]="p.y - 10" class="trend-point-label">{{ p.bookings }}</text>
+          <text [attr.x]="p.x" y="172" class="trend-month-label">{{ p.month }}</text>
+        }
+      </svg>
+    </div>
+
+  </section>
+
+  <!-- Revenue breakdown table -->
+  <section class="table-card">
+    <h2>Channel Revenue Breakdown</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Channel</th>
+          <th>Bookings</th>
+          <th>Revenue</th>
+          <th>Share</th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (s of sources(); track s.name) {
+          <tr>
+            <td>
+              <span class="dot" [style.background]="s.color"></span>
+              {{ s.name }}
+            </td>
+            <td>{{ s.bookings }}</td>
+            <td>₹{{ s.revenue | number }}</td>
+            <td>{{ (s.bookings / totalBookings()) * 100 | number: '1.0-1' }}%</td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </section>
+</div>
+<app-footer></app-footer>

@@ -1,23 +1,59 @@
 <app-header></app-header>
-<div style="text-align: center;">
-    <app-name-handler [tname] ='username'></app-name-handler>
-</div>
-<br/>
-<div class="row">
-   
-      <div class="col-md-4">
-        <!-- empty column -->
-      </div>
-      <div class="col-md-3">
-        <label class="form-label">Username</label>
-        <input
-          class="form-control"
-          type="text"
-          name="username"
-          [(ngModel)]="username"
-        />
+<br />
+
+<div class="container">
+  <!-- Add user form -->
+  <div class="card shadow-sm border-0 mb-4">
+    <div class="card-body">
+      <div class="row g-3 align-items-end">
+        <div class="col-md-6">
+          <label class="form-label fw-semibold">Username</label>
+          <input
+            class="form-control"
+            placeholder="Enter a username"
+            (input)="username.set($any($event.target).value)"
+            [value]="username()"
+            (keyup.enter)="addNames()"
+          />
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-primary w-100" (click)="addNames()">
+            + Add Name
+          </button>
+        </div>
       </div>
     </div>
+  </div>
 
- 
+  <!-- Table -->
+  <div class="card shadow-sm border-0">
+    <div class="table-responsive">
+      <table class="table modern-table align-middle mb-0">
+        <thead>
+          <tr>
+            <th style="width: 80px">#</th>
+            <th>Username</th>
+            <th class="text-end" style="width: 160px">Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (userID of userNames(); track userID; let i = $index) {
+            <tr> <app-name-handler
+                [index]="i + 1"
+                [tname]="userID"
+                (selectedUser)="selectedUser($event)"></app-name-handler></tr>
+          } @empty {
+            <tr>
+              <td colspan="3" class="text-center text-muted py-5">
+                No users added yet
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<br />
 <app-footer></app-footer>

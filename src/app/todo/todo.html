@@ -1,0 +1,42 @@
+<app-header></app-header>
+
+<main class="container">
+  <div class="add-form">
+    <input
+      #txtName
+      type="text"
+      id="txtName"
+      class="input"
+      placeholder="Enter name"
+      [value]="name()"
+      (input)="name.set(txtName.value)"
+      (keyup.enter)="handleClick()"
+    />
+    <button type="button" class="btn btn-primary" (click)="handleClick()">Add</button>
+  </div>
+
+  <table class="user-table">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (user of userData(); track user.id) {
+        <tr>
+          <td>{{ $index + 1 }}</td>
+          <td>{{ user.name }}</td>
+          <td><button type="button" class="btn btn-danger" (click)="handleDeleteClick(user.id)"  >Delete</button></td>
+        </tr>
+      } @empty {
+        <tr>
+          <td colspan="3" class="empty">No records found</td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</main>
+
+<app-footer></app-footer>
