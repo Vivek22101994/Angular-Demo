@@ -1,8 +1,9 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HeaderComponent } from '../header/header';
 import { Footer } from '../footer/footer';
 import { RouterLink } from '@angular/router';
+import { CommonService } from '../common/common-service';
 
 interface User {
   id: number;
@@ -27,7 +28,15 @@ export class Dashboard implements OnInit {
   users = signal<User[]>([]);
   loading = signal(true);
   error = signal('');
-  constructor(private http: HttpClient) {}
+  commonService = inject(CommonService);
+  constructor(private http: HttpClient) {
+
+     this.commonService.subject.subscribe({
+      next:(val)=>{
+           console.log(val);
+      }
+    });
+  }
   ngOnInit() {
     this.http.get<User[]>('https://jsonplaceholder.typicode.com/users')
       .subscribe({

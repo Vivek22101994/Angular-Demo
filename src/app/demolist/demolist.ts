@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
-import { Component,OnInit, signal } from '@angular/core';
+import { Component,inject,OnInit, signal } from '@angular/core';
 import { HeaderComponent } from '../header/header';
 import { Footer } from '../footer/footer';
 import { Router } from '@angular/router';
+import { AuthService } from '../auth';
+import { CommonService } from '../common/common-service';
 
 @Component({
   imports: [HeaderComponent,Footer],
@@ -11,7 +13,11 @@ import { Router } from '@angular/router';
   templateUrl: './demolist.html',
 })
 export class Demolist {
-   constructor(private http:HttpClient,private router:Router){}
+  
+   constructor(private http:HttpClient,private router:Router){
+    
+   }
+   commonService = inject(CommonService);
    listData=signal<any>([]);
    private backupList: any = [];
    isLoading=signal(true);
@@ -38,6 +44,7 @@ export class Demolist {
      }); 
    };
    handleClick(id:number){
+       this.commonService.subject.next(id.toString());
        this.deletedid = id;
        this.backupList = [...this.listData()];
        this.isDeleted.set(true);      

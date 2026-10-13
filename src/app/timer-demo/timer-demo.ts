@@ -1,7 +1,8 @@
 
-import { Component,OnInit,signal} from '@angular/core';
+import { Component,inject,OnInit,signal} from '@angular/core';
 import { HeaderComponent } from '../header/header';
 import { Footer } from '../footer/footer';
+import { CommonService } from '../common/common-service';
 
 @Component({
   imports: [HeaderComponent,Footer],
@@ -11,6 +12,10 @@ import { Footer } from '../footer/footer';
   templateUrl: './timer-demo.html',
 })
 export class TimerDemo implements OnInit {
+  commonService = inject(CommonService);
+  constructor(){
+   
+  }
    userData = signal({"id":12,"name":"vivek","city":"Surat"});
    counter = signal(0);
    min=signal(0);

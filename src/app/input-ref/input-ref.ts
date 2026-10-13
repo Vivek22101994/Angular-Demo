@@ -5,6 +5,7 @@ import { NameHandler } from '../name-handler/name-handler';
 import { FormsModule } from '@angular/forms';
 import { single } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { CommonService } from '../common/common-service';
 
 @Component({
   imports: [HeaderComponent,Footer,NameHandler,FormsModule],
@@ -14,6 +15,15 @@ import { CommonModule } from '@angular/common';
   templateUrl: './input-ref.html',
 })
 export class InputRef {
+
+  commonService = inject(CommonService);
+  constructor(){
+    this.commonService.subject.subscribe({
+      next:(val)=>{
+           console.log(val);
+      }
+    });
+  }
   username = signal('');
   userNames = signal<string[]>([]);
 
