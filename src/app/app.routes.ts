@@ -8,7 +8,7 @@ export const routes: Routes = [
     { path: 'inputRef',canMatch: [authGuard],loadComponent:() => import('./input-ref/input-ref').then(m=>m.InputRef) },
     { path: 'adduser',canMatch: [authGuard],loadComponent:() => import('./adduser/adduser').then(m=>m.Adduser) },
     { path: 'timerdemo',canMatch: [authGuard],loadComponent:() => import('./timer-demo/timer-demo').then(m=>m.TimerDemo) },
-    { path: 'todo',canMatch: [authGuard],loadComponent:() => import('./todo/todo').then(m=>m.Todo) },
+    { path: 'todo',loadComponent:() => import('./todo/todo').then(m=>m.Todo) },
     { path: 'DemoList',loadComponent:() => import('./demolist/demolist').then(m=>m.Demolist) },
     { path: '**',loadComponent:() => import('./not-found/not-found').then(m=>m.NotFound) },
 ];
