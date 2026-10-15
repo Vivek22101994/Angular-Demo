@@ -15,22 +15,22 @@
     <form (ngSubmit)="handleSubmit()" #loginForm="ngForm">
       <div class="row g-3">
         <div class="col-md-6">
-          <label class="form-label">Full Name</label>
+          <ng-container *ngTemplateOutlet="lblTemplate,context:{text:'Full Name'}"></ng-container> 
           <input class="form-control" type="text" name="fullName" [(ngModel)]="fullName" [disabled]="loading()" placeholder="John Doe" />
         </div>
 
         <div class="col-md-6">
-          <label class="form-label">Email</label>
+          <ng-container *ngTemplateOutlet="lblTemplate,context:{text:'Email'}"></ng-container> 
           <input class="form-control" type="email" name="email" [(ngModel)]="email" [disabled]="loading()" placeholder="john@example.com" />
         </div>
 
         <div class="col-md-6">
-          <label class="form-label">Phone Number</label>
+          <ng-container *ngTemplateOutlet="lblTemplate,context:{text:'Mobile No'}"></ng-container> 
           <input class="form-control" type="tel" name="phone" [(ngModel)]="phone" [disabled]="loading()" placeholder="+91 98765 43210" />
         </div>
 
         <div class="col-md-6">
-          <label class="form-label">Role</label>
+          <ng-container *ngTemplateOutlet="lblTemplate,context:{text:'Select Role'}"></ng-container> 
           <select class="form-select" name="role" [(ngModel)]="role" [disabled]="loading()">
             <option value="" disabled selected>Select role</option>
             <option value="admin">Admin</option>
@@ -40,12 +40,12 @@
         </div>
 
         <div class="col-md-6">
-          <label class="form-label">Password</label>
+          <ng-container *ngTemplateOutlet="lblTemplate,context:{text:'Passowrd'}"></ng-container> 
           <input class="form-control" type="password" name="password" [(ngModel)]="password" [disabled]="loading()" placeholder="••••••••" />
         </div>
 
         <div class="col-md-6">
-          <label class="form-label">Confirm Password</label>
+          <ng-container *ngTemplateOutlet="lblTemplate,context:{text:'Confirm Passowrd'}"></ng-container> 
           <input class="form-control" type="password" name="confirmPassword" [(ngModel)]="confirmPassword" [disabled]="loading()" placeholder="••••••••" />
         </div>
       </div>
@@ -56,5 +56,9 @@
     </form>
   </div>
 </div>
+
+<ng-template #lblTemplate let-lableText="text">
+     <label class="form-label">{{lableText}}</label>
+</ng-template>
 
 <app-footer></app-footer>
