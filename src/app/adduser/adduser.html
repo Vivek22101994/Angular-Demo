@@ -15,7 +15,7 @@
     <form (ngSubmit)="handleSubmit()" #loginForm="ngForm">
       <div class="row g-3">
         <div class="col-md-6">
-          <ng-container *ngTemplateOutlet="lblTemplate,context:{textxx:'Full Name'}"></ng-container> 
+          <ng-container *ngTemplateOutlet="lblTemplate,context:{text:'Full Name'}"></ng-container> 
           <input class="form-control" type="text" name="fullName" [(ngModel)]="fullName" [disabled]="loading()" placeholder="John Doe" />
         </div>
 
