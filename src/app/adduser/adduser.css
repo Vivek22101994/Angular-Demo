@@ -1,72 +1,147 @@
 .add-user-wrapper {
-  min-height: calc(100vh - 200px);
+  min-height: calc(100vh - 120px);
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f4f6f9;
   padding: 40px 16px;
+  background: linear-gradient(135deg, #eef2ff 0%, #f8fafc 50%, #e0f2fe 100%);
 }
 
 .add-user-card {
-  background: #fff;
+  display: flex;
   width: 100%;
-  max-width: 720px;
-  padding: 40px;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  max-width: 980px;
+  background: #fff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(30, 41, 99, 0.15);
+  animation: fadeUp 0.5s ease;
 }
 
-.add-user-card .form-label {
-  font-weight: 500;
-  color: #333;
-}
-
-.add-user-card .form-control,
-.add-user-card .form-select {
-  border-radius: 8px;
-  padding: 10px 14px;
-  border: 1px solid #dde1e6;
-}
-
-.add-user-card .form-control:focus,
-.add-user-card .form-select:focus {
-  border-color: #3b82f6;
-  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
-}
-
-.add-user-card .btn-primary {
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 15px;
-}
-.password-wrapper {
+/* Left panel */
+.side-panel {
+  flex: 0 0 38%;
+  align-items: center;
+  padding: 40px 32px;
+  color: #fff;
+  background: linear-gradient(160deg, #4f46e5 0%, #6366f1 50%, #0ea5e9 100%);
   position: relative;
+  overflow: hidden;
+
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+  }
+  &::before { width: 240px; height: 240px; top: -80px; right: -80px; }
+  &::after  { width: 180px; height: 180px; bottom: -60px; left: -60px; }
+
+  .side-content { position: relative; z-index: 1; }
+  h2 { font-weight: 700; font-size: 1.6rem; margin-bottom: 12px; }
+  p  { opacity: 0.9; line-height: 1.6; }
 }
 
-.password-wrapper .form-control {
-  padding-right: 2.75rem; /* keeps text from going under the icon */
+.side-icon {
+  width: 64px; height: 64px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.2);
+  font-size: 26px;
+  margin-bottom: 24px;
+}
+
+.side-list {
+  list-style: none; padding: 0; margin-top: 24px;
+  li { margin-bottom: 10px; font-size: 0.95rem; }
+  i  { margin-right: 8px; color: #a7f3d0; }
+}
+
+/* Right panel */
+.form-panel {
+  flex: 1;
+  padding: 40px 36px;
+}
+
+.form-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: #475569;
+  margin-bottom: 6px;
+}
+
+.input-group {
+  border: 1.5px solid #e2e8f0;
+  border-radius: 10px;
+  background: #f8fafc;
+  overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+
+  &:focus-within {
+    border-color: #6366f1;
+    background: #fff;
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+  }
+
+  .input-group-text,
+  .form-control,
+  .form-select {
+    border: none;
+    background: transparent;
+    box-shadow: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  .input-group-text { color: #94a3b8; padding-right: 4px; }
+  &:focus-within .input-group-text { color: #6366f1; }
 }
 
 .toggle-eye {
-  position: absolute;
-  top: 50%;
-  right: 12px;
-  transform: translateY(-50%);
-  background: none;
-  border: 0;
-  padding: 0;
-  line-height: 1;
-  color: #6c757d;
+  border: none;
+  background: transparent;
+  color: #94a3b8;
+  padding: 0 14px;
   cursor: pointer;
+  transition: color 0.2s;
+  &:hover:not(:disabled) { color: #6366f1; }
 }
 
-.toggle-eye .fa {
-  font-size: 18px; /* 24px is a bit large inside a textbox */
+.btn-submit {
+  padding: 12px;
+  font-weight: 600;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #4f46e5, #0ea5e9);
+  transition: transform 0.15s, box-shadow 0.15s, opacity 0.2s;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(79, 70, 229, 0.35);
+    color: #fff;
+  }
+  &:disabled { opacity: 0.7; }
 }
 
-.toggle-eye:hover {
-  color: #212529;
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
-.add-user-card .password-wrapper .form-control {
-     padding-right: 2.75rem;
-   }
+
+@media (max-width: 576px) {
+  .form-panel { padding: 28px 20px; }
+}
+.input-group {
+  .input-group-text,
+  .form-control,
+  .form-select {
+    border: none;
+    background-color: transparent;   
+    box-shadow: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+}

@@ -2,100 +2,110 @@
 
 <div class="add-user-wrapper">
   <div class="add-user-card">
-    <div class="text-center mb-3">
-      <img src="https://ssl.gstatic.com/ui/v1/icons/mail/rfr/logo_gmail_lockup_default_2x_r7.png" alt="Logo" height="55" />
+
+    <!-- Left: brand / info panel -->
+    <div class="side-panel d-none d-lg-flex">
+      <div class="side-content">
+        <div class="side-icon"><i class="fa fa-user-plus"></i></div>
+        <h2>Add a new team member</h2>
+        <p>Create an account and assign a role to give them the right level of access to the panel.</p>
+        <ul class="side-list">
+          <li><i class="fa fa-check-circle"></i> Role based access</li>
+          <li><i class="fa fa-check-circle"></i> Secure password setup</li>
+          <li><i class="fa fa-check-circle"></i> Ready to use instantly</li>
+        </ul>
+      </div>
     </div>
-    <h3 class="text-center fw-bold mb-1">Add User</h3>
-    <p class="text-center text-muted mb-4">Create a new account for the panel</p>
 
-    <div class="alert" [ngClass]="error()?.toLowerCase().includes('success') ? 'alert-success' : 'alert-danger'" *ngIf="error()">
-      {{ error() }}
-    </div>
-
-    <form (ngSubmit)="handleSubmit()" #loginForm="ngForm">
-      <div class="row g-3">
-
-        <div class="col-md-6">
-          <ng-container *ngTemplateOutlet="lblTemplate; context: { text: 'Full Name' }"></ng-container>
-          <input class="form-control" type="text" name="fullName" [(ngModel)]="fullName" [disabled]="loading()" placeholder="John Doe" />
-        </div>
-
-        <div class="col-md-6">
-          <ng-container *ngTemplateOutlet="lblTemplate; context: { text: 'Email' }"></ng-container>
-          <input class="form-control" type="email" name="email" [(ngModel)]="email" [disabled]="loading()" placeholder="john@example.com" />
-        </div>
-
-        <div class="col-md-6">
-          <ng-container *ngTemplateOutlet="lblTemplate; context: { text: 'Mobile No' }"></ng-container>
-          <input class="form-control" type="tel" name="phone" [(ngModel)]="phone" [disabled]="loading()" placeholder="+91 98765 43210" />
-        </div>
-
-        <div class="col-md-6">
-          <ng-container *ngTemplateOutlet="lblTemplate; context: { text: 'Select Role' }"></ng-container>
-          <select class="form-select" name="role" [(ngModel)]="role" [disabled]="loading()">
-            <option value="" disabled selected>Select role</option>
-            <option value="admin">Admin</option>
-            <option value="manager">Manager</option>
-            <option value="staff">Staff</option>
-          </select>
-        </div>
-
-        <!-- Password -->
-        <div class="col-md-6">
-          <ng-container *ngTemplateOutlet="lblTemplate; context: { text: 'Password' }"></ng-container>
-
-          <div class="password-wrapper">
-            <input
-              class="form-control"
-              [type]="showPassword ? 'text' : 'password'"
-              name="password"
-              autocomplete="new-password"
-              [(ngModel)]="password"
-              [disabled]="loading()"
-              placeholder="••••••••" />
-
-            <button
-              type="button"
-              class="toggle-eye"
-              (click)="showPassword = !showPassword"
-              [disabled]="loading()"
-              [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'">
-              <i class="fa" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
-            </button>
-          </div>
-        </div>
-
-        <!-- Confirm Password -->
-        <div class="col-md-6">
-          <ng-container *ngTemplateOutlet="lblTemplate; context: { text: 'Confirm Password' }"></ng-container>
-
-          <div class="password-wrapper">
-            <input
-              class="form-control"
-              [type]="showConfirmPassword ? 'text' : 'password'"
-              name="confirmPassword"
-              autocomplete="new-password"
-              [(ngModel)]="confirmPassword"
-              [disabled]="loading()"
-              placeholder="••••••••" />
-
-            <button
-              type="button"
-              class="toggle-eye"
-              (click)="showConfirmPassword = !showConfirmPassword"
-              [disabled]="loading()"
-              [attr.aria-label]="showConfirmPassword ? 'Hide password' : 'Show password'">
-              <i class="fa" [ngClass]="showConfirmPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
-            </button>
-          </div>
-        </div>
-
+    <!-- Right: form -->
+    <div class="form-panel">
+      <div class="mb-4">
+        <h3 class="fw-bold mb-1">Add User</h3>
+        <p class="text-muted mb-0">Create a new account for the panel</p>
       </div>
 
-      <button type="submit" class="btn btn-primary w-100 mt-4 py-2" [disabled]="loading()">
-        {{ loading() ? 'Creating User...' : 'Create User' }}
-      </button>
-    </form>
+      <div class="alert d-flex align-items-center gap-2"
+           [ngClass]="error()?.toLowerCase().includes('success') ? 'alert-success' : 'alert-danger'"
+           *ngIf="error()">
+        <i class="fa" [ngClass]="error()?.toLowerCase().includes('success') ? 'fa-check-circle' : 'fa-exclamation-circle'"></i>
+        <span>{{ error() }}</span>
+      </div>
+
+      <form (ngSubmit)="handleSubmit()" #loginForm="ngForm">
+        <div class="row g-3">
+
+          <div class="col-md-6">
+            <ng-container *ngTemplateOutlet="lblTemplate; context: { text: 'Full Name' }"></ng-container>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fa fa-user"></i></span>
+              <input class="form-control" type="text" name="fullName" [(ngModel)]="fullName" [disabled]="loading()" placeholder="John Doe" />
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <ng-container *ngTemplateOutlet="lblTemplate; context: { text: 'Email' }"></ng-container>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+              <input class="form-control" type="email" name="email" [(ngModel)]="email" [disabled]="loading()" placeholder="john@example.com" />
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <ng-container *ngTemplateOutlet="lblTemplate; context: { text: 'Mobile No' }"></ng-container>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fa fa-phone"></i></span>
+              <input class="form-control" type="tel" name="phone" [(ngModel)]="phone" [disabled]="loading()" placeholder="+91 98765 43210" />
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <ng-container *ngTemplateOutlet="lblTemplate; context: { text: 'Select Role' }"></ng-container>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fa fa-id-badge"></i></span>
+              <select class="form-select" name="role" [(ngModel)]="role" [disabled]="loading()">
+                <option value="" disabled selected>Select role</option>
+                <option value="admin">Admin</option>
+                <option value="manager">Manager</option>
+                <option value="staff">Staff</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <ng-container *ngTemplateOutlet="lblTemplate; context: { text: 'Password' }"></ng-container>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fa fa-lock"></i></span>
+              <input class="form-control" [type]="showPassword ? 'text' : 'password'" name="password"
+                     autocomplete="new-password" [(ngModel)]="password" [disabled]="loading()" placeholder="••••••••" />
+              <button type="button" class="toggle-eye" (click)="showPassword = !showPassword" [disabled]="loading()"
+                      [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'">
+                <i class="fa" [ngClass]="showPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <ng-container *ngTemplateOutlet="lblTemplate; context: { text: 'Confirm Password' }"></ng-container>
+            <div class="input-group">
+              <span class="input-group-text"><i class="fa fa-shield"></i></span>
+              <input class="form-control" [type]="showConfirmPassword ? 'text' : 'password'" name="confirmPassword"
+                     autocomplete="new-password" [(ngModel)]="confirmPassword" [disabled]="loading()" placeholder="••••••••" />
+              <button type="button" class="toggle-eye" (click)="showConfirmPassword = !showConfirmPassword" [disabled]="loading()"
+                      [attr.aria-label]="showConfirmPassword ? 'Hide password' : 'Show password'">
+                <i class="fa" [ngClass]="showConfirmPassword ? 'fa-eye-slash' : 'fa-eye'"></i>
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <button type="submit" class="btn btn-submit w-100 mt-4" [disabled]="loading()">
+          <span *ngIf="loading()" class="spinner-border spinner-border-sm me-2"></span>
+          <i *ngIf="!loading()" class="fa fa-user-plus me-2"></i>
+          {{ loading() ? 'Creating User...' : 'Create User' }}
+        </button>
+      </form>
+    </div>
   </div>
 </div>
 
