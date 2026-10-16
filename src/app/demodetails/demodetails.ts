@@ -10,12 +10,7 @@ import { CommonService } from '../common/common-service';
 })
 export class Demodetails {
   commonService = inject(CommonService);
-  constructor(private route:ActivatedRoute,private router :Router){
-     this.commonService.subject.subscribe({
-      next:(val)=>{
-           console.log(val);
-      }
-    });
+  constructor(private route:ActivatedRoute,private router :Router){     
   }
   id:number | undefined
   category : string | null = null 

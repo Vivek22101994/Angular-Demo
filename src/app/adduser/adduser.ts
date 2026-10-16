@@ -3,10 +3,10 @@ import { HeaderComponent } from '../header/header';
 import { Footer } from '../footer/footer';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgTemplateOutlet } from '@angular/common';
 
 @Component({
-  imports: [HeaderComponent,Footer,FormsModule,CommonModule],
+  imports: [HeaderComponent,Footer,FormsModule,CommonModule,NgTemplateOutlet],
   selector: 'app-adduser',
   styleUrl: './adduser.css',
   templateUrl: './adduser.html',
@@ -21,29 +21,34 @@ export class Adduser {
   loading = signal(false);
   error = signal('');
 
+  constructor(private http: HttpClient) {
+   
+  }
 
-  constructor(
-    private http: HttpClient,
-  ) {}
+  private validate() : string | null {
+  const EMAIL_REGEX   = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;  
+  if (!this.fullName.trim()) return 'Username required.';
+  const email = this.email.trim();
+  if (!email) return 'Email required.';
+  if (!EMAIL_REGEX.test(email)) return 'Enter a valid email address.';
+  if (!this.password) return 'Password required.';
+  if (this.password.length < 8) return 'Password must be at least 8 characters.';
+  return null;
+}
 
   handleSubmit(): void {
-    this.error.set('');
+    const message = this.validate();
+    if(message != null)
+    {
+        this.error.set(message);
+        return
+    }
+    
     const trimmedUsername = this.fullName.trim();
     const trimmedPassword = this.password.trim();
     const trimmedEmail= this.email.trim();
 
-    if (!trimmedUsername) {
-      this.error.set('Username required.');
-      return;
-    }
-    if (!trimmedEmail) {
-      this.error.set('Email required.');
-      return;    
-    }
-    if (!trimmedPassword) {
-      this.error.set('Password required.');
-      return;    
-    }
+    
     this.loading.set(true);
     const payload = {
     fullName: trimmedUsername,

@@ -30,7 +30,6 @@ export class Dashboard implements OnInit {
   error = signal('');
   commonService = inject(CommonService);
   constructor(private http: HttpClient) {
-
      this.commonService.subject.subscribe({
       next:(val)=>{
            console.log(val);
