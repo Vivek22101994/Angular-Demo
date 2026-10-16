@@ -39,3 +39,34 @@
   font-weight: 600;
   font-size: 15px;
 }
+.password-wrapper {
+  position: relative;
+}
+
+.password-wrapper .form-control {
+  padding-right: 2.75rem; /* keeps text from going under the icon */
+}
+
+.toggle-eye {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  background: none;
+  border: 0;
+  padding: 0;
+  line-height: 1;
+  color: #6c757d;
+  cursor: pointer;
+}
+
+.toggle-eye .fa {
+  font-size: 18px; /* 24px is a bit large inside a textbox */
+}
+
+.toggle-eye:hover {
+  color: #212529;
+}
+.add-user-card .password-wrapper .form-control {
+     padding-right: 2.75rem;
+   }
