@@ -30,12 +30,13 @@ export class Adduser {
   private validate() : string | null {
      const EMAIL_REGEX   = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;  
      if (!this.fullName.trim()) return 'Username required.';
+     if(this.fullName.trim().split(/\s+/).length <= 1) return "Please Prvoide Full Name"
      const email = this.email.trim();
      if (!email) return 'Email required.';
      if (!EMAIL_REGEX.test(email)) return 'Enter a valid email address.';
      if (!this.password) return 'Password required.';
      if (this.password.length < 8) return 'Password must be at least 8 characters.';
-     if (this.password != this.confirmPassword) return 'Password Confirm Password Should be Same';
+     if (this.password != this.confirmPassword) return 'Password and Confirm Password must match.';
      return null;
 }
 
