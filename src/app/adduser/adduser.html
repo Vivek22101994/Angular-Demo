@@ -37,7 +37,7 @@
           <div class="col-md-6">
             <ng-container *ngTemplateOutlet="lblTemplate; context: { text: 'Full Name' }"></ng-container>
             <div class="input-group">
-              <span class="input-group-text"><i class="fa fa-user"></i></span>
+              <ng-container *ngTemplateOutlet="lbliconTemplate; context: {icon:'fa fa-user'}"></ng-container>              
               <input class="form-control" type="text" name="fullName" [(ngModel)]="fullName" [disabled]="loading()" placeholder="John Doe" />
             </div>
           </div>
@@ -45,7 +45,7 @@
           <div class="col-md-6">
             <ng-container *ngTemplateOutlet="lblTemplate; context: { text: 'Email' }"></ng-container>
             <div class="input-group">
-              <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+              <ng-container *ngTemplateOutlet="lbliconTemplate; context: {icon:'fa fa-envelope'}"></ng-container> 
               <input class="form-control" type="email" name="email" [(ngModel)]="email" [disabled]="loading()" placeholder="john@example.com" />
             </div>
           </div>
@@ -53,7 +53,7 @@
           <div class="col-md-6">
             <ng-container *ngTemplateOutlet="lblTemplate; context: { text: 'Mobile No' }"></ng-container>
             <div class="input-group">
-              <span class="input-group-text"><i class="fa fa-phone"></i></span>
+              <ng-container *ngTemplateOutlet="lbliconTemplate; context: {icon:'fa fa-phone'}"></ng-container> 
               <input class="form-control" type="tel" name="phone" [(ngModel)]="phone" [disabled]="loading()" placeholder="+91 98765 43210" />
             </div>
           </div>
@@ -61,7 +61,7 @@
           <div class="col-md-6">
             <ng-container *ngTemplateOutlet="lblTemplate; context: { text: 'Select Role' }"></ng-container>
             <div class="input-group">
-              <span class="input-group-text"><i class="fa fa-id-badge"></i></span>
+              <ng-container *ngTemplateOutlet="lbliconTemplate; context: {icon:'fa fa-id-badge'}"></ng-container> 
               <select class="form-select" name="role" [(ngModel)]="role" [disabled]="loading()">
                 <option value="" disabled selected>Select role</option>
                 <option value="admin">Admin</option>
@@ -74,7 +74,7 @@
           <div class="col-md-6">
             <ng-container *ngTemplateOutlet="lblTemplate; context: { text: 'Password' }"></ng-container>
             <div class="input-group">
-              <span class="input-group-text"><i class="fa fa-lock"></i></span>
+              <ng-container *ngTemplateOutlet="lbliconTemplate; context: {icon:'fa fa-lock'}"></ng-container> 
               <input class="form-control" [type]="showPassword ? 'text' : 'password'" name="password"
                      autocomplete="new-password" [(ngModel)]="password" [disabled]="loading()" placeholder="••••••••" />
               <button type="button" class="toggle-eye" (click)="showPassword = !showPassword" [disabled]="loading()"
@@ -87,7 +87,7 @@
           <div class="col-md-6">
             <ng-container *ngTemplateOutlet="lblTemplate; context: { text: 'Confirm Password' }"></ng-container>
             <div class="input-group">
-              <span class="input-group-text"><i class="fa fa-shield"></i></span>
+              <ng-container *ngTemplateOutlet="lbliconTemplate; context: {icon:'fa fa-shield'}"></ng-container> 
               <input class="form-control" [type]="showConfirmPassword ? 'text' : 'password'" name="confirmPassword"
                      autocomplete="new-password" [(ngModel)]="confirmPassword" [disabled]="loading()" placeholder="••••••••" />
               <button type="button" class="toggle-eye" (click)="showConfirmPassword = !showConfirmPassword" [disabled]="loading()"
@@ -111,6 +111,9 @@
 
 <ng-template #lblTemplate let-labelText="text">
   <label class="form-label">{{ labelText }}</label>
+</ng-template>
+<ng-template #lbliconTemplate let-icontext="icon">
+  <span class="input-group-text"><i [class]="icontext"></i></span>
 </ng-template>
 
 <app-footer></app-footer>
