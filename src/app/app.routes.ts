@@ -11,5 +11,6 @@ export const routes: Routes = [
     { path: 'todo',loadComponent:() => import('./todo/todo').then(m=>m.Todo) },
     { path: 'DemoList',loadComponent:() => import('./demolist/demolist').then(m=>m.Demolist) },
     { path: 'nameForm',loadComponent:() => import('./nameform/nameform').then(m=>m.Nameform) },
+    { path: 'switchMap',loadComponent:() => import('./switch-map-demo/switch-map-demo').then(m=>m.SwitchMapDemo) },
     { path: '**',loadComponent:() => import('./not-found/not-found').then(m=>m.NotFound) },
 ];

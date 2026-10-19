@@ -1,0 +1,68 @@
+<app-header></app-header>
+
+<main class="page">
+  <div class="container">
+
+    <!-- Search card -->
+    <section class="card">
+      <h2 class="card__title">Switch Map Demo</h2>
+      <p class="card__subtitle">Type to search posts by title. Each keystroke cancels the previous request.</p>
+
+      <label for="nameInput" class="field__label">Search title</label>
+      <div class="field__control">
+        <svg class="field__icon" viewBox="0 0 24 24" aria-hidden="true">
+          <circle cx="11" cy="11" r="7" />
+          <path d="M20 20l-3.5-3.5" />
+        </svg>
+        <input
+          id="nameInput"
+          type="text"
+          class="field__input"
+          autocomplete="off"
+          placeholder="e.g. qui"
+          [formControl]="name"
+        />
+      </div>
+    </section>
+
+    <!-- Results card -->
+    <section class="card card--table">
+      <div class="results-head">
+        <h3 class="results-head__title">Results</h3>
+        <span class="badge">{{ loading ? '…' : users.length + ' found' }}</span>
+      </div>
+
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Id</th>
+              <th>Title</th>
+            </tr>
+          </thead>
+          <tbody>
+            @if (loading) {
+              <tr>
+                <td colspan="2" class="data-table__empty">Loading..</td>
+              </tr>
+            } @else {
+              @for (item of users; track item.id) {
+                <tr>
+                  <td class="data-table__id">{{ item.id }}</td>
+                  <td>{{ item.title }}</td>
+                </tr>
+              } @empty {
+                <tr>
+                  <td colspan="2" class="data-table__empty">No results found.</td>
+                </tr>
+              }
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<app-footer></app-footer>
