@@ -1,0 +1,29 @@
+<app-header></app-header>
+
+<main class="page">
+  <section class="card">
+    <h2 class="title">Name Demo</h2>
+    <p class="subtitle">
+      Type a name and click the button to read it from the FormControl.
+    </p>
+
+    <label for="nameInput" class="label">Your name</label>
+    <div class="input-row">
+      <input
+        id="nameInput"
+        type="text"
+        class="input"
+        [formControl]="name"
+        placeholder="Enter name"
+      />
+      <button type="button" class="btn" (click)="getName()">Get Name</button>
+    </div>
+
+    <div class="preview">
+      <span class="preview-label">Live value</span>
+      <span class="preview-value">{{ name.value || '—' }}</span>
+    </div>
+  </section>
+</main>
+
+<app-footer></app-footer>
