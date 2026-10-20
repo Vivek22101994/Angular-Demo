@@ -25,7 +25,7 @@ export class SwitchMapDemo {
   constructor(private http: HttpClient) {
     this.name.valueChanges
       .pipe(
-        debounceTime(500),
+        debounceTime(100),
         distinctUntilChanged(),
         startWith(''),                       // loads the initial list immediately
         tap(() => (this.loading = true)),
