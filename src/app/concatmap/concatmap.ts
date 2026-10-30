@@ -9,7 +9,6 @@ interface UserData {
   title: string;
 }
 
-
 @Component({
   imports: [HeaderComponent, Footer],
   selector: 'app-concatmap',

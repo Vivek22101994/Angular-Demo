@@ -13,5 +13,6 @@ export const routes: Routes = [
     { path: 'nameForm',loadComponent:() => import('./nameform/nameform').then(m=>m.Nameform) },
     { path: 'switchMap',loadComponent:() => import('./switch-map-demo/switch-map-demo').then(m=>m.SwitchMapDemo) },
     { path: 'concatmap',loadComponent:() => import('./concatmap/concatmap').then(m=>m.Concatmap) },
+    { path: 'multiSelect',loadComponent:() => import('./multiselect/multiselect').then(m=>m.Multiselect) },
     { path: '**',loadComponent:() => import('./not-found/not-found').then(m=>m.NotFound) },
 ];

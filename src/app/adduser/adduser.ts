@@ -24,9 +24,8 @@ export class Adduser {
   error = signal('');
 
   constructor(private http: HttpClient) {
-   
+      console.log("First Step Constructor Called.");
   }
-
   private validate() : string | null {
      const EMAIL_REGEX   = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;  
      if (!this.fullName.trim()) return 'Username required.';
@@ -37,10 +36,9 @@ export class Adduser {
      if (!this.password) return 'Password required.';
      if (this.password.length < 8) return 'Password must be at least 8 characters.';
      if (this.password != this.confirmPassword) return 'Password and Confirm Password must match.';
-     return null;
+     return null;    
 }
-
-  handleSubmit(): void {
+handleSubmit(): void {
     const message = this.validate();
     if(message != null)
     {
@@ -61,13 +59,8 @@ export class Adduser {
        role: 'admin'
   };
 
-  this.http
-      .post(
-        `/api/Auth/saveUser`,
-         payload,
-        { withCredentials: true, observe: 'response' }
-      )
-      .subscribe({
+  this.http.post( `/api/Auth/saveUser`, payload,{ withCredentials: true, observe: 'response' })
+       .subscribe({
         next: (response) => {
           this.loading.set(false);
           if (response.status === 200) {
@@ -75,8 +68,7 @@ export class Adduser {
             this.email = '';
             this.password = '';
             this.fullName = '';
-            this.phone='';
-                  
+            this.phone='';       
           } else {
             this.error.set('Invalid Access');
           }
