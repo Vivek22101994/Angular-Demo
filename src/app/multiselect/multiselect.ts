@@ -36,6 +36,7 @@ interface UserData {
     </ng-select>
     <br/>
     <button type="button" class="form-control" style="width:10%" (click)="getValues()">Get values</button>
+     <button type="button" class="form-control" style="width:10%" (click)="ClearValues()">Clear values</button>
     <app-footer></app-footer>
   `
 })
@@ -47,8 +48,7 @@ items$!: Observable<UserData[]>;
   selectedIds: number[] = [];
 
   constructor(private http: HttpClient) {
-    this.items$ = concat(
-      of([]), // initial empty list
+    this.items$ = 
       this.search$.pipe(
         debounceTime(300),
         distinctUntilChanged(),
@@ -59,10 +59,13 @@ items$!: Observable<UserData[]>;
             tap(() => (this.loading = false))
           )
         )
-      )
-    );
+      );
   }
   getValues(){  
+    console.log(this.selectedIds);
+  }
+  ClearValues(){
+    this.selectedIds = [];
     console.log(this.selectedIds);
   }
 }
