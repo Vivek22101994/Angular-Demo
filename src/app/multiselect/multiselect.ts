@@ -36,7 +36,7 @@ interface UserData {
     </ng-select>
     <br/>
     <button type="button" class="form-control" style="width:10%" (click)="getValues()">Get values</button>
-     <button type="button" class="form-control" style="width:10%" (click)="ClearValues()">Clear values</button>
+     <button type="button" class="form-control" style="width:10%" (click)="clearValues()">Clear values</button>
     <app-footer></app-footer>
   `
 })
@@ -64,7 +64,7 @@ items$!: Observable<UserData[]>;
   getValues(){  
     console.log(this.selectedIds);
   }
-  ClearValues(){
+  clearValues(){
     this.selectedIds = [];
     console.log(this.selectedIds);
   }

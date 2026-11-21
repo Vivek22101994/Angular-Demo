@@ -14,5 +14,6 @@ export const routes: Routes = [
     { path: 'switchMap',loadComponent:() => import('./switch-map-demo/switch-map-demo').then(m=>m.SwitchMapDemo) },
     { path: 'concatmap',loadComponent:() => import('./concatmap/concatmap').then(m=>m.Concatmap) },
     { path: 'multiSelect',loadComponent:() => import('./multiselect/multiselect').then(m=>m.Multiselect) },
+    { path: 'agGrid',loadComponent:() => import('./aggrid/aggrid').then(m=>m.AGGrid) },
     { path: '**',loadComponent:() => import('./not-found/not-found').then(m=>m.NotFound) },
 ];
