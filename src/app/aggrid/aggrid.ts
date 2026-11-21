@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { AgGridAngular } from 'ag-grid-angular';
 import {
   AllCommunityModule,
+  CellValueChangedEvent,
   ColDef,
   GridReadyEvent,
   ModuleRegistry,
@@ -53,6 +54,7 @@ export class AGGrid {
     resizable: true,
     flex: 1,
     minWidth: 120,
+    editable: true
   };
 
   onGridReady(_: GridReadyEvent) {
@@ -63,5 +65,8 @@ export class AGGrid {
   }
   onSearch(event: Event) {
       this.searchText.set((event.target as HTMLInputElement).value);
+  }
+  onCellValueChanged(event: CellValueChangedEvent<User>) {
+      console.log(`${event.colDef.field}: ${event.oldValue} → ${event.newValue}`);
   }
 }
