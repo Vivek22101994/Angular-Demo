@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { AgGridAngular } from 'ag-grid-angular';
 import {
   AllCommunityModule,
+  CellClickedEvent,
   CellValueChangedEvent,
   ColDef,
   GridReadyEvent,
@@ -38,7 +39,7 @@ export class AGGrid {
   searchText = signal('');
   
   colDefs: ColDef[] = [
-    { field: 'id', width: 90 },
+    { field: 'id', width: 10 },
     { field: 'name' },
     { field: 'username' },
     { field: 'email' },
@@ -46,8 +47,31 @@ export class AGGrid {
     { field: 'website' },
     { headerName: 'Company', valueGetter: p => p.data.company.name },
     { headerName: 'City', valueGetter: p => p.data.address.city },
+    {
+      headerName: 'Edit',
+      cellRenderer: () => '<button class="edit-btn">Edit</button>',
+      onCellClicked: (e) => console.log("Edit"),
+      editable: false,      // this stops the empty edit box
+      sortable: false,
+      filter: false,        // removes the filter icon from the header
+      resizable: false,
+      flex: 0,
+      width: 110,
+      cellClass: 'no-focus-border',
+    },
+    {
+      headerName: 'Delete',
+      cellRenderer: () => '<button class="delete-btn">Delete</button>',
+      onCellClicked: (e) => (this.deleteData(e)),
+      editable: false,      // this stops the empty edit box
+      sortable: false,
+      filter: false,        // removes the filter icon from the header
+      resizable: false,
+      flex: 0,
+      width: 110,
+      cellClass: 'no-focus-border',
+    }
   ];
-
   defaultColDef: ColDef = {
     sortable: true,
     filter: true,
@@ -56,9 +80,7 @@ export class AGGrid {
     minWidth: 120,
     editable: true
   };
-
   onGridReady(_: GridReadyEvent) {
-    console.log("aaa");
     this.http
       .get<User[]>('https://jsonplaceholder.typicode.com/users')
       .subscribe(data => (this.rowData.set(data)));
@@ -68,5 +90,9 @@ export class AGGrid {
   }
   onCellValueChanged(event: CellValueChangedEvent<User>) {
       console.log(`${event.colDef.field}: ${event.oldValue} → ${event.newValue}`);
+  }
+  deleteData(event : CellClickedEvent){
+     const Id = event.data.id;
+     console.log(Id);
   }
 }
